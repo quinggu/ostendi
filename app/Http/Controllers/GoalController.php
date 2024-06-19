@@ -19,7 +19,7 @@ class GoalController extends Controller
         $employeeId = (int)$request->input('employee_id');
         $progress = (int)$request->input('progress');
         $goalId = (int)$request->input('goal_id');
-        $goal = Goal::find($goalId);
+        $goal = Goal::find($employeeId);
 
         if (!$this->isGoalBelongToEmployee($goal, $employeeId)) {
             return $this->errorResponse();
@@ -68,7 +68,7 @@ class GoalController extends Controller
     {
         return response()->json([
             'status' => 'error',
-            'message' => 'Goal progress updated successfully',
+            'message' => 'This goal does not belong to this employee',
         ], 404);
     }
 }
