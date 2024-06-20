@@ -16,9 +16,9 @@ class GoalController extends Controller
             return $errors;
         }
 
-        $employeeId = (int)$request->input('employee_id');
-        $progress = (int)$request->input('progress');
-        $goalId = (int)$request->input('goal_id');
+        $employeeId = $request->query->getInt('employee_id');
+        $progress = $request->query->getInt('progress');
+        $goalId = $request->query->getInt('goal_id');
         $goal = Goal::find($employeeId);
 
         if (!$this->isGoalBelongToEmployee($goal, $employeeId)) {
